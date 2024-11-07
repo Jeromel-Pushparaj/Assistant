@@ -54,6 +54,16 @@ class Assistant:
         joke = pyjokes.get_joke()
         self.utils.talk(joke)
 
-    def ask_ai(self, command):
-        response = self.get_gemini_response(command)
-        self.utils.talk(response)
+    def ask_ai(self):
+        chat = 1
+        while chat:
+            print("AI Activated:")
+            prompt = self.utils.take_command()
+            if prompt != 0:
+                response = self.get_gemini_response(prompt)
+                print(response)
+                self.utils.talk(response)
+            else:
+                print("AI deactivated: ")
+                chat = 0
+

@@ -15,7 +15,6 @@ def main():
         command = utils.take_command()
         if command is 0:
             utils.active = 0
-            print("hi")
             active_state = utils.active_process()
             if utils.listen_state is True and active_state is False:
                 utils.play_sound(r"F:\Project LIGHT Your  Desktop assistant\bottle-205353.mp3")
@@ -44,7 +43,7 @@ def main():
         elif "open" in command and utils.active == 1:
             assistant.open_application(command)
         elif "ask" in command and utils.active == 1:
-            assistant.ask_ai(command)
+            assistant.ask_ai()
 
 if __name__ == "__main__":
     main()
