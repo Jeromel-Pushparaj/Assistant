@@ -31,6 +31,10 @@ def active_process():
     else:
         return False
 
+def checkForCommands(text):
+    if "I want to know" in text:
+        print("activating wiki")
+    
 
 while(1):
     
@@ -49,3 +53,6 @@ while(1):
         listen_state = True
         active = 1
         print("Activated:")
+    
+    if active == 1:
+        checkForCommands(text)
