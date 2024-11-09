@@ -60,9 +60,30 @@ class Assistant:
             print("AI Activated:")
             prompt = self.utils.take_command()
             if prompt != 0:
+                if "give input" in prompt:
+                    print("Enter your Input (type 'END' on a new line to finish):")
+                    paragraph = []
+                    while True:
+                        line = input()
+                        if line.strip().upper() == 'END':
+                            break
+                        paragraph.append(line)
+
+                    paragraph_text = "\n".join(paragraph)
+                    response = self.get_gemini_response(paragraph_text)
+                    print(response)
+                    if len(response) > 10:
+                        self.utils.open_link(response)
+                    else:
+                        self.utils.talk(response)
+                    continue
+            if prompt != 0:
                 response = self.get_gemini_response(prompt)
                 print(response)
-                self.utils.talk(response)
+                if len(response) > 10:
+                    self.utils.open_link(response)
+                else:
+                    self.utils.talk(response)
             else:
                 print("AI deactivated: ")
                 chat = 0

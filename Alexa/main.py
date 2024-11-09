@@ -13,7 +13,7 @@ def main():
     
     while True:
         command = utils.take_command()
-        if command is 0:
+        if command == 0:
             utils.active = 0
             active_state = utils.active_process()
             if utils.listen_state is True and active_state is False:
