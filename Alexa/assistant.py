@@ -6,6 +6,7 @@ from utils import Utils
 import config
 import google.generativeai as genai
 import os
+import streamlit
 
 class Assistant:
     def __init__(self):
