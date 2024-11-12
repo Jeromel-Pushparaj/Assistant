@@ -6,8 +6,8 @@ from utils import Utils
 import config
 import google.generativeai as genai
 import os
-import streamlit
-
+import streamlit as st
+import webbrowser
 class Assistant:
     def __init__(self):
         self.utils = Utils()
@@ -33,7 +33,7 @@ class Assistant:
             self.utils.talk("Good Evening, sir")
 
     def open_application(self, command):
-        if 'davinci' in command:
+        if 'editing' in command:
             app_path = config.APPS['davinci']
             self.utils.talk("Opening DaVinci Resolve")
             os.startfile(app_path)
@@ -62,26 +62,15 @@ class Assistant:
             prompt = self.utils.take_command()
             if prompt != 0:
                 if "give input" in prompt:
-                    print("Enter your Input (type 'END' on a new line to finish):")
-                    paragraph = []
-                    while True:
-                        line = input()
-                        if line.strip().upper() == 'END':
-                            break
-                        paragraph.append(line)
-
-                    paragraph_text = "\n".join(paragraph)
-                    response = self.get_gemini_response(paragraph_text)
-                    print(response)
-                    if len(response) > 10:
-                        self.utils.open_link(response)
-                    else:
-                        self.utils.talk(response)
+                    webbrowser.open_new_tab("http://localhost:8501")
+                    # Open URL in a new window, if no browser window is open
+                    webbrowser.open_new("http://localhost:8501")
                     continue
             if prompt != 0:
                 response = self.get_gemini_response(prompt)
                 print(response)
-                if len(response) > 10:
+                if len(response) > 100:
+                    # self.utils.open_link(response)
                     self.utils.open_link(response)
                 else:
                     self.utils.talk(response)

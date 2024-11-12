@@ -11,7 +11,7 @@ HTML_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Text Container</title>
+    <title>Scrollable Text Container</title>
     <style>
         /* Reset margin and padding */
         * {
@@ -23,23 +23,31 @@ HTML_TEMPLATE = """
         /* Full-screen container */
         body, html {
             height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
         }
 
-        /* Container with responsive text */
+        /* Centered, scrollable text container */
         .text-container {
+            width: 80%;
+            max-width: 600px;
+            height: 70vh;
             padding: 20px;
-            width: 100%;
-            max-width: 100vw;
-            height: 100vh;
-            overflow-wrap: break-word; /* Ensures long words break to fit */
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
         }
 
-        /* Responsive text style */
-        .text-container p {
-            font-size: calc(10vw + 10vh); /* Adjusts based on viewport size */
-            font-weight: bold;
+        /* Styling for Markdown text */
+        .text-container pre {
+            font-size: 1rem;
             color: #333;
+            white-space: pre-wrap; /* Ensures text wraps in pre */
+            word-wrap: break-word; /* Breaks long words if needed */
             margin: 0;
         }
     </style>
@@ -47,16 +55,15 @@ HTML_TEMPLATE = """
 <body>
 
     <div class="text-container">
-    <p>
         <pre>
         {{text}}
         </pre>
-    </p>
     </div>
-    
 
 </body>
 </html>
+
+
 
 """
 

@@ -41,6 +41,7 @@ def main():
         elif "joke" in command and utils.active == 1:
             assistant.tell_joke()
         elif "open" in command and utils.active == 1:
+            query = command.replace("open", "")
             assistant.open_application(command)
         elif "ask" in command and utils.active == 1:
             assistant.ask_ai()
