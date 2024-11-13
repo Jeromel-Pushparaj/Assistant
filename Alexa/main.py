@@ -31,20 +31,27 @@ def main():
             break
         elif "play" in command and utils.active == 1:
             assistant.play_song(command)
+            utils.active = 0
         elif "search" in command and utils.active == 1:
             query = command.replace("search", "")
             pywhatkit.search(query)
             utils.talk(f"Searching {query}")
+            utils.active = 0
+
         elif "time" in command and utils.active == 1:
             current_time = datetime.datetime.now().strftime('%I:%M %p')
             utils.talk(f"The time is {current_time}")
+            utils.active = 0
         elif "joke" in command and utils.active == 1:
             assistant.tell_joke()
+            utils.active = 0
         elif "open" in command and utils.active == 1:
             query = command.replace("open", "")
             assistant.open_application(command)
+            utils.active = 0
         elif "ask" in command and utils.active == 1:
             assistant.ask_ai()
+            utils.active = 0
 
 if __name__ == "__main__":
     main()

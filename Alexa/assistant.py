@@ -45,6 +45,10 @@ class Assistant:
             app_path = config.APPS['vscode']
             self.utils.talk("Opening VS Code")
             os.startfile(app_path)
+        elif 'postman' in command:
+            app_path = config.APPS['postman']
+            self.utils.talk("Opening Postman")
+            os.startfile(app_path)
 
     def play_song(self, command):
         song = command.replace('play', '')
@@ -65,11 +69,12 @@ class Assistant:
                     webbrowser.open_new_tab("http://localhost:8501")
                     # Open URL in a new window, if no browser window is open
                     webbrowser.open_new("http://localhost:8501")
+                    
                     continue
             if prompt != 0:
                 response = self.get_gemini_response(prompt)
                 print(response)
-                if len(response) > 100:
+                if len(response) > 300:
                     # self.utils.open_link(response)
                     self.utils.open_link(response)
                 else:
